@@ -12,3 +12,5 @@ example/fortran/Computation/main
 example/fortran/Computation/libCNStream.so
 output/
 src/libFyMc/example/testDict/*.o
+# ignore output files
+MATLAB/waverf.cof
