@@ -1,0 +1,96 @@
+
+
+surfaceMesh
+{
+    type                circularCylinderShell;
+
+    writeVTK            true;
+    writeLog            true;
+    nSubLine            5;
+
+    nGauss              2;
+
+    ellipsoid
+    {
+        halfAxis        ( 5.0  2.0  2.0);
+        numberOfMesh    ( 15       10   5 );
+        center          ( 0.0  0.0   -0.5);
+
+        nGauss          $nGauss;
+        writeLog        $writeLog;
+    }
+
+    hemiSphere
+    {
+        radius          1.0;
+
+        nR              15;
+        nZ              10;
+
+        center          ( 0.0  0.0   -0.5);
+
+        nGauss          $nGauss;
+        nSubLine        $nSubLine;
+
+        writeLog        $writeLog;
+    }
+
+    paraPipe
+    {
+        length          ( 5.0   5.0    5.0);
+        numberOfMesh    ( 3     3      3 );
+        center          ( 0.0   0.0    0.0);
+
+        meshRatio       (1.0    1.0     1.0);
+
+        isTopOpen       true;
+
+        nGauss          $nGauss;
+        nSubLine        $nSubLine;
+
+        writeLog        $writeLog;
+    }
+
+    semiEllipsoid
+    {
+        halfAxis        ( 5.0  2.0  2.0);
+        numberOfMesh    ( 15       10   5 );
+        center          ( 0.0   0.0   0.0);
+
+        nGauss          $nGauss;
+        nSubLine        $nSubLine;
+        writeLog        $writeLog;
+    }
+
+    sphere
+    {
+        radius          1.0;
+
+        nR              15;
+        nZ              10;
+
+        center          ( 0.0  2.0  3.0);
+
+        nGauss          $nGauss;
+        writeLog        $writeLog;
+    }
+
+    circularCylinderShell
+    {
+        radius          1.0;
+        height          2.0;
+
+        nR              7;
+        nZ              6;
+
+        rZ              0.8;
+
+        center          ( 0.0  0.0  -1.0);
+
+        nGauss          $nGauss;
+        nSubLine        2;
+        writeLog        $writeLog;
+
+    }
+
+}

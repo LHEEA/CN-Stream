@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectCreator="Intel Fortran" Keyword="Console Application" Version="11.0" ProjectIdGuid="{C8F95E78-F6C9-401A-8255-2CCEFE973051}">
+	<Platforms>
+		<Platform Name="Win32"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" Preprocess="preprocessYes" AdditionalIncludeDirectories="C:\Users\mgouin\ownCloud\Rienecker_et_Fenton\Rienecker_Fenton\src" FPPDefinesOnly="true" WarnInterfaces="true" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" SubSystem="subSystemConsole"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Preprocess="preprocessYes" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" SubSystem="subSystemConsole"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath=".\libCNStream\HOS_modlinear_wave.f90"/>
+		<File RelativePath=".\libCNStream\HOS_modmaths.f90"/>
+		<File RelativePath=".\libCNStream\lib_CN_Stream.f90"/>
+		<File RelativePath=".\libCNStream\main_CN_Stream.f90"/>
+		<File RelativePath=".\libCNStream\mod_CN_Stream.f90"/>
+		<File RelativePath=".\libCNStream\modCNinitialize.f90"/>
+		<File RelativePath=".\libCNStream\modMatrix.f90"/>
+		<File RelativePath=".\libCNStream\modModal.f90"/>
+		<File RelativePath=".\libCNStream\modReconstruction.f90"/>
+		<File RelativePath=".\libCNStream\modReconstrucVol.f90"/>
+		<File RelativePath=".\libCNStream\modSetupNameList.f90"/>
+		<File RelativePath=".\libCNStream\modSolve.f90"/>
+		<File RelativePath=".\libCNStream\modType.f90"/>
+		<File RelativePath=".\libCNStream\modUtils.f90"/></Filter></Files>
+	<Globals/></VisualStudioProject>

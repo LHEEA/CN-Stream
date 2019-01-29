@@ -1,0 +1,26 @@
+waveInput waveStreamIcare;
+ 
+waveStreamIcare
+{
+    GeneralDimension            0;                   // Dimensional (=1) or Non-dimensional (=0)
+    GeneralDepth  0.1784996E+04;
+    GeneralModes          20;                                //Number of modes for first evaluation
+    WaveInput WaveLength;                                        //Period or WaveLength
+    WaveLength   0.1000000E+01;                                  // WaveLength if "WaveInput WaveLength" Period if "WaveInput Period"
+    WaveHeight   0.8924979E-01;
+    CurrentValue  0.0000000E+00;                               // value of current
+    CurrentType           0;          // type of current ; 1 mass transport / 0 eulerian
+}
+Options
+{
+    n_H          100;                                          // Number of steps in wave height
+    err_type            1;                                   // Error type / 0 absolute ; 1 relative
+    eps_err    0.1000000E-09;                                             // Tolerance on the equations
+    err_max    0.1000000E+08;                                             // Divergence criteria
+    eps_inc    0.1000000E-09;                          // Convergence criteria on unknowns
+    eps_N1     0.1000000E-09;                                   // Decision criteria on the modes
+    itermax           999;                                     // Maximum number of iterations
+    increment_type            1;              // Increment type for wave height / 0 linear ; 1 exp
+    printonscreen            1;                        // Print on screen =1 / do not print on screen = 0
+    writeoutput            0;                      // Write output files =1 / do not Write output files = 0
+ }
