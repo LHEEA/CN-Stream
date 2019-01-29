@@ -3,6 +3,9 @@ mainCNS
 # ignore build and lib directories
 build/
 lib/
+output/*
+# trick to create output directory in .git repo
+!output/.keep
 # ignore some specific files/directories
 example/C++/src/*.o
 example/C++/libCNStream.so
@@ -10,7 +13,6 @@ example/fortran/*.mod
 example/fortran/main
 example/fortran/Computation/main
 example/fortran/Computation/libCNStream.so
-output/
 src/libFyMc/example/testDict/*.o
 # ignore output files
 MATLAB/waverf.cof
