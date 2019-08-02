@@ -42,11 +42,6 @@ $(DOBJ)modVariablesRF.o: modVariablesRF.f90
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC) $< -o $@
 
-
-	
-
-	
-
 ### phony auxiliary rules ------------------------------------------------------
 .PHONY : $(MKDIRS)
 $(MKDIRS):
