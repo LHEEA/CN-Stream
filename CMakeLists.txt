@@ -88,3 +88,4 @@ message("${ColourReset}")
 
 add_subdirectory(src/libFyMc)
 add_subdirectory(src/libCNStream)
+add_subdirectory(example)
