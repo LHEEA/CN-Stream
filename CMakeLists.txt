@@ -26,6 +26,7 @@ endif()
 
 ###-------------------------------------------------------------------------###
 
+SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(COMPILE_LANGUAGE Fortran CXX)
 if(NOT DEFINED CMAKE_Fortran_COMPILER)
   set(CMAKE_Fortran_COMPILER gfortran)       #... Fortran Compiler Path
