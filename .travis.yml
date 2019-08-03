@@ -121,7 +121,7 @@ before_script:
 
 script:
   # Test the program
-  - make test
+  - make test ARGS="-V"
   # Create package
   - make package
   # Make sure we can install with no issues.
