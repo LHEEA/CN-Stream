@@ -87,6 +87,17 @@ message("${ColourReset}")
 #... -fPIC is needed to generate shared library
 #set(CMAKE_Fortran_FLAGS "-O3 -march=corei7 -msse2 -funroll-loops -fno-protect-parens -ffast-math -fPIC")
 
+MESSAGE(STATUS "CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
+STRING(TOUPPER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_UPPER)
+IF(CMAKE_BUILD_TYPE_UPPER MATCHES DEBUG)
+    SET(BUILD_SHARED_LIBS OFF)
+ENDIF()
+
+IF(${CMAKE_BUILD_TYPE_UPPER} STREQUAL "COVERAGE")
+    MESSAGE(STATUS "Adding coverage")
+    FIND_PACKAGE(codecov)
+ENDIF()
+
 add_subdirectory(src/libFyMc)
 add_subdirectory(src/libCNStream)
 ENABLE_TESTING()
