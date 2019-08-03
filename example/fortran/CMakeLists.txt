@@ -17,6 +17,7 @@ configure_file(
 add_test(NAME test_fortran
          COMMAND main
          WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+set_property(TEST test_fortran PROPERTY ENVIRONMENT "LD_LIBRARY_PATH=${PROJECT_SOURCE_DIR}/lib")
 
 if(${CMAKE_BUILD_TYPE_UPPER} STREQUAL "COVERAGE")
     add_coverage(main)
