@@ -25,10 +25,10 @@ struct RF_type{
     double hdepth;        // depth
     double H;             // wave height
     double k;             // wave number
-    double lambda;        // wavelength 
+    double lambda;        // wavelength
     double T;             // period
     double U;             //
-    double C;             
+    double C;
 
     double R;
     double Q;
