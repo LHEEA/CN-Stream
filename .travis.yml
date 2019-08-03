@@ -69,11 +69,11 @@ matrix:
         - BUILD_TYPE='Coverage'
         - CMAKE_GENERATOR='Unix Makefiles'
     - os: osx
-      compiler: clang
+      compiler: gcc
       env:
-        - CXX_COMPILER='clang++'
-        - C_COMPILER='clang'
-        - Fortran_COMPILER='gfortran'
+        - CXX_COMPILER='g++-9'
+        - C_COMPILER='gcc-9'
+        - Fortran_COMPILER='gfortran-9'
         - BUILD_TYPE='Release'
         - CMAKE_GENERATOR='Unix Makefiles'
     - os: windows
