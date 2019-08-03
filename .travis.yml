@@ -68,30 +68,27 @@ matrix:
         - Fortran_COMPILER='gfortran-7'
         - BUILD_TYPE='Coverage'
         - CMAKE_GENERATOR='Unix Makefiles'
-    - os: osx
-      compiler: gcc
-      env:
-        - CXX_COMPILER='g++-9'
-        - C_COMPILER='gcc-9'
-        - Fortran_COMPILER='gfortran-9'
-        - BUILD_TYPE='Release'
-        - CMAKE_GENERATOR='Unix Makefiles'
-    - os: windows
-      compiler: mingw
-      env:
-        - CXX_COMPILER='g++'
-        - C_COMPILER='gcc'
-        - Fortran_COMPILER='gfortran'
-        - BUILD_TYPE='Release'
-        - CMAKE_GENERATOR='MinGW Makefiles'
+#    - os: osx
+#      compiler: gcc
+#      env:
+#        - CXX_COMPILER='g++-9'
+#        - C_COMPILER='gcc-9'
+#        - Fortran_COMPILER='gfortran-9'
+#        - BUILD_TYPE='Release'
+#        - CMAKE_GENERATOR='Unix Makefiles'
+#    - os: windows
+#      compiler: mingw
+#      env:
+#        - CXX_COMPILER='g++'
+#        - C_COMPILER='gcc'
+#        - Fortran_COMPILER='gfortran'
+#        - BUILD_TYPE='Release'
+#        - CMAKE_GENERATOR='MinGW Makefiles'
 
 before_install:
   - test -n $CC && unset CC
   - test -n $CXX && unset CXX
   - test -n $FC && unset FC
-#  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get --yes update; fi
-#  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get --yes install gfortran; fi
-#  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install gcc; fi
 
 install:
   - |
