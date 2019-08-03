@@ -66,7 +66,11 @@ matrix:
         - BUILD_TYPE='Coverage'
     - os: osx
       compiler: clang
-      env: BUILD_TYPE=RelWithDebInfo
+      env:
+        - CXX_COMPILER='clang++'
+        - C_COMPILER='clang'
+        - Fortran_COMPILER='gfortran'
+        - BUILD_TYPE='Release'
 
 before_install:
   - test -n $CC && unset CC
