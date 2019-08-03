@@ -26,7 +26,7 @@ endif()
 
 ###-------------------------------------------------------------------------###
 
-set(COMPILE_LANGUAGE Fortran)                       #
+set(COMPILE_LANGUAGE Fortran CXX)
 if(NOT DEFINED CMAKE_Fortran_COMPILER)
   set(CMAKE_Fortran_COMPILER gfortran)       #... Fortran Compiler Path
   # set(CMAKE_Fortran_COMPILER ifort)        #... Fortran Compiler Path
