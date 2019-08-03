@@ -11,12 +11,12 @@ install(TARGETS main
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/Computation/RF_input.dict
-    ${CMAKE_CURRENT_BINARY_DIR}/RF_input.dict
+    ${PROJECT_SOURCE_DIR}/lib/RF_input.dict
     COPYONLY)
 
 add_test(NAME test_fortran
          COMMAND main
-         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
 if(${CMAKE_BUILD_TYPE_UPPER} STREQUAL "COVERAGE")
     add_coverage(main)
