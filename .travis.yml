@@ -19,6 +19,7 @@ matrix:
         - C_COMPILER='gcc-5'
         - Fortran_COMPILER='gfortran-5'
         - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
     - os: linux
       compiler: gcc
       addons: &gcc6
@@ -34,6 +35,7 @@ matrix:
         - C_COMPILER='gcc-6'
         - Fortran_COMPILER='gfortran-6'
         - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
     - os: linux
       compiler: gcc
       addons: &gcc7
@@ -49,6 +51,7 @@ matrix:
         - C_COMPILER='gcc-7'
         - Fortran_COMPILER='gfortran-7'
         - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
     - os: linux
       compiler: gcc
       addons: &gcc7
@@ -64,6 +67,7 @@ matrix:
         - C_COMPILER='gcc-7'
         - Fortran_COMPILER='gfortran-7'
         - BUILD_TYPE='Coverage'
+        - CMAKE_GENERATOR='Unix Makefiles'
     - os: osx
       compiler: clang
       env:
@@ -71,6 +75,15 @@ matrix:
         - C_COMPILER='clang'
         - Fortran_COMPILER='gfortran'
         - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
+    - os: windows
+      compiler: mingw
+      env:
+        - CXX_COMPILER='g++'
+        - C_COMPILER='gcc'
+        - Fortran_COMPILER='gfortran'
+        - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='MinGW Makefiles'
 
 before_install:
   - test -n $CC && unset CC
@@ -81,10 +94,26 @@ before_install:
 #  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install gcc; fi
 
 install:
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+      brew update &> /dev/null
+      brew cask uninstall --force oclint
+      brew upgrade cmake
+      brew install gcc@9
+      brew info gcc
+    elif [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      echo "linux"
+    elif [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
+      echo "windows"
+      echo $PATH
+    fi
+
+before_script:
   - mkdir cnstream-build && cd cnstream-build
   # Configure
   - >
      cmake $TRAVIS_BUILD_DIR
+     -G"${CMAKE_GENERATOR}"
      -DCMAKE_CXX_COMPILER=${CXX_COMPILER}
      -DCMAKE_C_COMPILER=${C_COMPILER}
      -DCMAKE_Fortran_COMPILER=${Fortran_COMPILER}
