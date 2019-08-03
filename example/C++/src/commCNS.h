@@ -2,8 +2,6 @@
 #define DEF_COMMCNS_H
 
 #include <string>
-#include <string.h>
-#include <iostream>
 
 struct Output_type{
     double eta;
@@ -53,11 +51,11 @@ struct Option_type{
     int writeoutput;   // 1 yes ; 0 no
 };
 
-void calcRF(const std::string ConfigFile, RF_type &RF, Option_type &option);
+void calcRF(const std::string& ConfigFile, RF_type &RF, Option_type &option);
 
 void recRF(RF_type &RF, Option_type &option, const double &x, const double &y,const double &z,const double &t,const double &thetaincident,const bool &hydrostatic, Output_type &output);
 
-void initAiry(const std::string ConfigFile, RF_type &RF, Option_type &option);
+void initAiry(const std::string& ConfigFile, RF_type &RF, Option_type &option);
 
 void airy(RF_type &RF, Option_type &option, const double &x, const double &y,const double &z,const double &t,const double &thetaincident,const bool &hydrostatic, Output_type &output);
 
