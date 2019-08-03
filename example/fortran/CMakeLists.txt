@@ -12,3 +12,7 @@ install(TARGETS main
 add_test(NAME test_fortran
          COMMAND main
          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Computation)
+
+if(${CMAKE_BUILD_TYPE_UPPER} STREQUAL "COVERAGE")
+    add_coverage(main)
+endif()
