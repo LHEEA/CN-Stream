@@ -4,4 +4,4 @@ add_executable(main
   CreateInputDict.f90
   main.f90
   )
-# target_link_libraries(main CNStream)
+target_link_libraries(main dl)
