@@ -47,16 +47,16 @@ WRITE(*,*) "CurrentType ", input%CurrentType          ! type of current ; 1 mass
 
 
 WRITE(*,*) "------Option------"
-WRITE(*,*) "n_H ", option%n_H        ! Number of steps in wave height
-WRITE(*,*) "err_type ",option%err_type        ! Error type / 0 absolute ; 1 relative
-WRITE(*,*) "eps_err ",option%eps_err    ! Tolerance on the equations
-WRITE(*,*) "err_max ", option%err_max     ! Divergence criteria
-WRITE(*,*) "eps_inc ",option%eps_inc     ! Convergence criteria on unknowns
-WRITE(*,*) "eps_N1 ",option%eps_N1       ! Decision criteria on the modes
-WRITE(*,*) "itermax ",option%itermax       ! Maximum number of iterations
+WRITE(*,*) "n_H ", option%n_H                       ! Number of steps in wave height
+WRITE(*,*) "err_type ",option%err_type              ! Error type / 0 absolute ; 1 relative
+WRITE(*,*) "eps_err ",option%eps_err                ! Tolerance on the equations
+WRITE(*,*) "err_max ", option%err_max               ! Divergence criteria
+WRITE(*,*) "eps_inc ",option%eps_inc                ! Convergence criteria on unknowns
+WRITE(*,*) "eps_N1 ",option%eps_N1                  ! Decision criteria on the modes
+WRITE(*,*) "itermax ",option%itermax                ! Maximum number of iterations
 WRITE(*,*) "increment_type ",option%increment_type  ! Increment type for wave height / 0 linear ; 1 exponential
-WRITE(*,*) "printonscreen ",option%printonscreen   ! Print on screen =1 / do not print on screen = 0
-WRITE(*,*) "writeoutput ", option%writeoutput     ! Write output files =1 / do not Write output files = 0
+WRITE(*,*) "printonscreen ",option%printonscreen    ! Print on screen =1 / do not print on screen = 0
+WRITE(*,*) "writeoutput ", option%writeoutput       ! Write output files =1 / do not Write output files = 0
 
 
 end subroutine printSetupFile
@@ -76,8 +76,6 @@ outputFile = trim(pathOutput)//trim(namefileWoPath)
 end subroutine buildOutputFile
 
 
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
 subroutine WriteRF(RF, option, namefileWoPath)
 !
@@ -99,9 +97,9 @@ write(out_unit, '(a,I7)')   "RF%lorT", RF%lorT         ! input wavelength (=1) o
 write(out_unit,'(a,f10.4)') "RF%g", RF%g               ! gravity acceleration
 
 if (RF%hdepth > 100000) then
-   write(out_unit,'(a)')       "RF%hdepth     inf"     ! depth
+    write(out_unit,'(a)')       "RF%hdepth     inf"     ! depth
 else
-   write(out_unit,'(a,f10.4)') "RF%hdepth", RF%hdepth  ! depth
+    write(out_unit,'(a,f10.4)') "RF%hdepth", RF%hdepth  ! depth
 endif
 
 write(out_unit,'(a,f10.4)') "RF%H", RF%H               ! wave height
@@ -114,31 +112,31 @@ write(out_unit,'(a,f10.4)') "RF%R", RF%R               ! Bernoulli's constant
 write(out_unit,'(a,f10.4)') "RF%Q", RF%Q               ! volume flow rate
 
 if (allocated (a_g)) then
-   write(out_unit,'(a,I4)') "a_g allocated with size", size(a_g)
-   write(out_unit,'(f12.6)') a_g
+    write(out_unit,'(a,I4)') "a_g allocated with size", size(a_g)
+    write(out_unit,'(f12.6)') a_g
 else
-   write(out_unit,'(a,f10.4)') "a_g not allocated"
+    write(out_unit,'(a,f10.4)') "a_g not allocated"
 end if
 
 if (allocated (b_g)) then
-   write(out_unit,'(a,I4)') "b_g allocated with size", size(b_g)
-   write(out_unit,'(f12.6)') b_g
+    write(out_unit,'(a,I4)') "b_g allocated with size", size(b_g)
+    write(out_unit,'(f12.6)') b_g
 else
-   write(out_unit,'(a,f10.4)') "b_g not allocated"
+    write(out_unit,'(a,f10.4)') "b_g not allocated"
 end if
 
 if (allocated (eta_g)) then
-   write(out_unit,'(a,I4)') "eta_g allocated with size", size(eta_g)
-   write(out_unit,'(f12.6)') eta_g
+    write(out_unit,'(a,I4)') "eta_g allocated with size", size(eta_g)
+    write(out_unit,'(f12.6)') eta_g
 else
-   write(out_unit,'(a,f10.4)') "eta_g not allocated"
+    write(out_unit,'(a,f10.4)') "eta_g not allocated"
 end if
 
 if (allocated (slope_g)) then
-   write(out_unit,'(a,I4)') "slope_g allocated with size", size(slope_g)
-   write(out_unit,'(f12.6)') slope_g
+    write(out_unit,'(a,I4)') "slope_g allocated with size", size(slope_g)
+    write(out_unit,'(f12.6)') slope_g
 else
-   write(out_unit,'(a,f10.4)') "slope_g not allocated"
+    write(out_unit,'(a,f10.4)') "slope_g not allocated"
 end if
 
 
@@ -146,8 +144,7 @@ close (out_unit)
 
 
 end subroutine WriteRF
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
+
 !-----------------------------------------------------------------------
 subroutine RF_write_waverfcof(RF, option)
 !
@@ -176,11 +173,11 @@ J=1
 
 write(out_unit,*)J,DBLE(b_g(J)) * XV_dim
 do J=2,option%N1+1
-   write(out_unit,*)J,DBLE(b_g(J)) * XL_dim * XV_dim
+    write(out_unit,*)J,DBLE(b_g(J)) * XL_dim * XV_dim
 enddo
 
 do J=1,option%N2+1
-   write(out_unit,*)J,DBLE(a_g(J)) * XL_dim
+    write(out_unit,*)J,DBLE(a_g(J)) * XL_dim
 enddo
 close(out_unit)
 
@@ -188,17 +185,15 @@ close(out_unit)
 call buildOutputFile(option, "waverf.DAT",outputFile)
 open(out_unit,file=outputFile)
 do J=1,option%N1+1
-   write(out_unit,*)J,ABS(DBLE(b_g(J)))
+    write(out_unit,*)J,ABS(DBLE(b_g(J)))
 enddo
 do J=1,option%N2+1
-   write(out_unit,*)J,ABS(DBLE(a_g(J)))
+    write(out_unit,*)J,ABS(DBLE(a_g(J)))
 enddo
 close(out_unit)
 
 end subroutine RF_write_waverfcof
 
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
 
 subroutine WriteOutput(output, onFile, option)
@@ -211,8 +206,8 @@ type(Option_type), intent(in) :: option
 character(len=StringLength) :: outputFile
 
 if (onFile .EQV. .true.) then
-	call buildOutputFile(option, "resultsOutput.txt",outputFile)
-   open (unit=out_unit,file=outputFile,action="write",status="replace")
+    call buildOutputFile(option, "resultsOutput.txt",outputFile)
+    open (unit=out_unit,file=outputFile,action="write",status="replace")
 end if
 
 WRITE(out_unit,*) output%eta
@@ -224,16 +219,11 @@ WRITE(out_unit,*) output%dVydx, output%dVydy, output%dVydz
 WRITE(out_unit,*) output%dVzdx, output%dVzdy, output%dVzdz
 
 if (onFile .EQV. .true.) then
-   close (out_unit)
+    close (out_unit)
 endif
 
 end subroutine WriteOutput
 
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
 subroutine TecplotOutput_Modes(RF,option)
 ! Create tecplot outputs of the velocity and pressure field under the wave
@@ -251,17 +241,16 @@ WRITE(out_unit,'(A)')'TITLE=" Modal description "'
 WRITE(out_unit,'(A)') 'VARIABLES="k","Modal amplitude (LOG)"'
 WRITE(out_unit,103)'ZONE T = ','"eta"',', I=',option%N2
 DO i=1,option%N2
-	WRITE(out_unit,102) (i-1)*RF%k, LOG10(MAX(EPSILON(1.0_rp),ABS(a_g(i))))
+    WRITE(out_unit,102) (i-1)*RF%k, LOG10(MAX(EPSILON(1.0_rp),ABS(a_g(i))))
 ENDDO
 WRITE(out_unit,103)'ZONE T = ','"phi"',', I=',option%N1
 DO i=1,option%N1
-	WRITE(out_unit,102) (i-1)*RF%k, LOG10(MAX(EPSILON(1.0_rp),ABS(b_g(i))))
+    WRITE(out_unit,102) (i-1)*RF%k, LOG10(MAX(EPSILON(1.0_rp),ABS(b_g(i))))
 ENDDO
 103 FORMAT(A,A,A,I5,A,I5)
 102 FORMAT(2(ES12.5,X))
 end subroutine TecplotOutput_Modes
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
+
 !-----------------------------------------------------------------------
 subroutine TecplotOutput_VelocityPressure(RF,option, y, time, theta)
 ! Create tecplot outputs of the velocity and pressure field under the wave
@@ -269,7 +258,6 @@ type(RF_type), intent(inout)      :: RF
 type(Option_type), intent(in)  :: option
 
 type(Output_type) :: output
-type(typDictionaryPtr) :: outputsDict
 
 integer, parameter :: out_unit=11
 integer, parameter :: nz=20
@@ -301,7 +289,7 @@ open (unit=out_unit,file=outputFile ,action="write",status="replace")
 
 write(out_unit,'(A)') 'TITLE =" Velocity and pressure field "'
 write(out_unit,'(A)') 'VARIABLES="x","z","eta","vitx","vitz","Press"'
-WRITE(out_unit,103)'ZONE T = "',time,'", I=', 2*option%N2,', J=', nz
+write(out_unit,103)'ZONE T = "',time,'", I=', 2*option%N2,', J=', nz
 !
 ! Definition of the z vector, we use a boundary-fitted mesh
 DO i2=1,nz
@@ -330,10 +318,10 @@ type(RF_type), intent(inout)      :: RF
 type(Option_type), intent(in)  :: option
 
 integer, parameter :: out_unit=12
-integer            :: i1,i2
+integer            :: i1
 
 !real(rp), dimension (:), allocatable :: xvect, zvect
-real(rp) :: xlocal,y,time,theta,zmin
+real(rp) :: xlocal,y,time,theta
 real(rp) :: eta,detadx,detadt
 
 character(len=StringLength) :: outputFile
@@ -360,8 +348,5 @@ WRITE(out_unit,103)'ZONE T = "',time,'", I=', 2*option%N2
 
 end subroutine TecplotOutput_FreeSurface
 !-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
-!-----------------------------------------------------------------------
-
 
 end module modOutputs
