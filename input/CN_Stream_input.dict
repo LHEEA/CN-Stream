@@ -19,7 +19,7 @@ Subdict
 {
   Outputs
   {
-    Path ./output/;     // Default: "./output/"  
+    Path ./output/;     // Default: "./output/"
     x  1.0;             // Horizontal x-location of the evaluation
     y  2.0;             // Horizontal y-location of the evaluation
     z  3.0;             // Vertical location of the evaluation
@@ -27,7 +27,6 @@ Subdict
     theta 0.0;          // Incident angle of wave field
   }
 }
-
 
   Options
   {
@@ -44,24 +43,15 @@ Subdict
     $Subdict
   }
 
-
-
-
 waveStream
 {
   GeneralDimension    1;     // Dimensional (=1) or Non-dimensional (=0)
   GeneralDepth     0.27d0;   // h if GeneralDimension=1 / h' (see documentation) if GeneralDimension=0
   GeneralModes    20;        // Number of modes for first evaluation
   WaveInput    Period;       // Period or Wavelength
-  
-  
+
   Period 1.48472d0;         // Period or Wavelength / be careful: if GeneralDimension=0 --> this input value is set to 1
   WaveHeight    4.7d-2;     // H if GeneralDimension=1 / H' (see documentation) if GeneralDimension=0
   CurrentValue   0.0d0;     // value of current ; dimensional if GeneralDimension=1 / non-dimensional (see documentation) if GeneralDimension=1
   CurrentType 0;            // type of current ; 1 mass transport / 0 Eulerian current
 }
-
-
-
-
-
