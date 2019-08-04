@@ -62,12 +62,12 @@ Subroutine initializeCirularCylinderShellMesh(this, radius, height, &
     Integer, Dimension(2)       :: lineLabel
     Real(RP),Dimension(3)       :: refVector
 
-    real(RP)                    :: z1, z2, theta1, theta2
+    real(RP)                    :: z1, z2
+    ! real(RP)                  :: theta1, theta2
 
-    integer :: nGauss
+    ! integer :: nGauss
     Real(RP), allocatable :: Nx1(:), Nx2(:), Ny1(:), Ny2(:)
     Real(RP), allocatable :: W1(:), W2(:)
-    integer :: i, j, k
 
     refVector(1) = 0.0_RP
     refVector(2) = 0.0_RP
