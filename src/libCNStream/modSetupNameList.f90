@@ -93,7 +93,7 @@ Call dictPtr%initialize(fileDir, fileName, fileExt)
 !!... Show Dictionary Contents
 Call dictPtr%print()
 
-inputDictName = dictPtr%getChar("waveInput");
+inputDictName = dictPtr%getChar("waveInput")
 inputDict = dictPtr%subDict(inputDictName)
 
 Call inputDict%print()
