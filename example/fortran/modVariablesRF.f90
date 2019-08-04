@@ -24,10 +24,10 @@ type  :: RF_type
     real(RP) :: hdepth        ! depth
     real(RP) :: H             ! wave height
     real(RP) :: k             ! wave number
-    real(RP) :: lambda        ! wavelength 
+    real(RP) :: lambda        ! wavelength
     real(RP) :: T             ! period
     real(RP) :: U             !
-    real(RP) :: C             
+    real(RP) :: C
 
     real(RP) :: R
     real(RP) :: Q
