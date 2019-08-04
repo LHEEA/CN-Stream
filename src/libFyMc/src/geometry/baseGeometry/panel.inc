@@ -41,7 +41,7 @@
         Class(typPanel), intent(inout)  :: this
         integer                         :: nGaussPoint
         !! Local Variables
-        real(rp),dimension(nGaussPoint) :: xi, eta
+        ! real(rp),dimension(nGaussPoint) :: xi, eta
         Real(RP),dimension(nGaussPoint) :: Nx1, Nx2, Ny1, Ny2
         Real(RP),dimension(nGaussPoint) :: W1, W2
         integer :: i, j, k
