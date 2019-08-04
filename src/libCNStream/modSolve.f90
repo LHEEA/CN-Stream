@@ -195,15 +195,15 @@ else
     sigma = tanh(RF%k * RF%hdepth)
 end if
 
-a_g(2) = H / 2
-a_g(3) = RF%k * a_g(2)**2 * (3 - sigma**2) / (4 * sigma**3)
+a_g(2) = H / 2.0_RP
+a_g(3) = RF%k * a_g(2)**2 * (3.0_RP - sigma**2) / (4.0_RP * sigma**3)
 !
 ! build potential modes
 b_g(1) = - RF%c
 b_g(2) = RF%g * a_g(2) / (RF%k * RF%c)
-b_g(3) = 3/4 * RF%k * a_g(2)**2 * (1 - sigma**4) / sigma**3
-RF%Q = 0;
-RF%R = RF%c**2/2;
+b_g(3) = 3.0_RP/4.0_RP * RF%k * a_g(2)**2 * (1.0_RP - sigma**4) / sigma**3
+RF%Q = 0.0_RP
+RF%R = RF%c**2/2.0_RP
 !
 ! storing initial solution
 call RF_calc_eta(RF, option)
