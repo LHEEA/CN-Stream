@@ -120,7 +120,7 @@ do i1=1,(Option%n_H + 1)
 
       ! recompute useful quantities on refined modes
       ! necessary for correct size of dynamic tables (eta and slope)
-      call RF_calc_eta(RF, option)
+      call RF_calc_eta(option)
       call RF_calc_slope(RF, option)
 
    end do
@@ -206,7 +206,7 @@ RF%Q = 0.0_RP
 RF%R = RF%c**2/2.0_RP
 !
 ! storing initial solution
-call RF_calc_eta(RF, option)
+call RF_calc_eta(option)
 
 end subroutine RF_initial_solution
 !-----------------------------------------------------------------------

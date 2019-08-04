@@ -31,9 +31,8 @@ contains
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
-subroutine RF_calc_eta(RF, option)
+subroutine RF_calc_eta(option)
 ! Recompute wave elevation and wave slope from fourier coefficients
-type(RF_type), intent(inout)  :: RF
 type(Option_type), intent(in) :: option
 
 integer :: i
