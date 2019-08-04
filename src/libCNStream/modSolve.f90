@@ -110,7 +110,7 @@ do i1=1,(Option%n_H + 1)
         WRITE(*,*) "it", i1, " Solved height", RF%H, " target is",  H_target
         print*, 'corresponding H/lambda=', RF%H*RF%k/(2.0_rp*pi)
       endif
-      call RF_calc_a(RF, option)
+      call RF_calc_a(option)
       call RF_decide(RF, option, iter)
 
       !if (option%printonscreen==1) then
@@ -336,7 +336,7 @@ do while (iter%F_max > option%eps_err .and. iter%DY_max > option%eps_inc .and. i
     call RF_solve(RF, option, iter, modal)
     !
     ! wave elevation, Fourier components
-    call RF_calc_a(RF, option)
+    call RF_calc_a(option)
     !
     ! wave slope
     call RF_calc_slope(RF, option)

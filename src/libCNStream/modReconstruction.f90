@@ -93,15 +93,14 @@ end subroutine RF_calc_slope
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
-subroutine RF_calc_a(RF, option)
+subroutine RF_calc_a(option)
 ! Compute fourier coefficients of the wave elevation
-type(RF_type), intent(inout)  :: RF
 type(Option_type), intent(in) :: option
 
 integer :: i
 
-real(RP), dimension(option%N2+1)  ::  phase
-real(RP), dimension(option%N2+1)  ::  array
+real(RP), dimension(option%N2+1) :: phase
+real(RP), dimension(option%N2+1) :: array
 
 ! check if arrays are already allocated
 if (allocated(a_g)) then
