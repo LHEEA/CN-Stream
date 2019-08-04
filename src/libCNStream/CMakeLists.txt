@@ -17,8 +17,8 @@ set(
 )
 
 set(
-  CNSTREAM_MAIN_SOURCES
-    main_CN_Stream.f90
+    CNSTREAM_MAIN_SOURCES
+        main_CN_Stream.f90
 )
 
 set(CNSTREAM_FLAG
@@ -31,15 +31,11 @@ set(CNSTREAM_INCLUDE
 
 add_library(CNStream SHARED ${CNSTREAM_SOURCES})
 
-target_include_directories(CNStream PRIVATE ${CNSTREAM_INCLUDE} )
+target_include_directories(CNStream PRIVATE ${CNSTREAM_INCLUDE})
 target_link_libraries(CNStream ${CNSTREAM_FLAG})
 
 set_target_properties(CNStream
     PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CNSTREAM_LIB_OUT}
-)
-
-set_target_properties(CNStream
-    PROPERTIES COMPILE_FLAGS "-cpp"
 )
 
 install(TARGETS CNStream
@@ -54,12 +50,12 @@ target_include_directories(mainCNS
     PRIVATE ${CMAKE_Fortran_MODULE_DIRECTORY}
 )
 
-set_target_properties(mainCNS
-    PROPERTIES COMPILE_FLAGS "-cpp"
-)
-
 target_link_libraries(mainCNS fymc)
 
 install(TARGETS mainCNS
         RUNTIME DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 )
+
+add_test(NAME test_mainCNS
+         COMMAND mainCNS
+         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
