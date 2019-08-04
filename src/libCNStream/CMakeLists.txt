@@ -59,3 +59,7 @@ install(TARGETS mainCNS
 add_test(NAME test_mainCNS
          COMMAND mainCNS
          WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+if(${CMAKE_BUILD_TYPE_UPPER} STREQUAL "COVERAGE")
+    add_coverage(mainCNS)
+endif()
