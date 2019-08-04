@@ -9,7 +9,7 @@ Program Main
     Character(nChar) :: waveConfigFile
 
     type(RF_type) :: RF
-    type(option_type) :: option
+    type(Option_type) :: option
     type(Output_type) :: output
 
     lib_CN_stream_Path = "libCNStream.so"
