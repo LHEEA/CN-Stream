@@ -202,7 +202,7 @@ contains
       P=rag*coshkzd/coshkd*coskxwt
       ETA=RF%H/2_rp*coskxwt
       dUdX = -agkk_w*coshkzd/coshkd*sinkxwt
-      dUdz = agkk_w*sinhkzd/coshkd*coskxwt
+      dUdZ = agkk_w*sinhkzd/coshkd*coskxwt
       dWdX = agkk_w*sinhkzd/sinhkd*coskxwt
       dWdZ = agkk_w*coshkzd/sinhkd*sinkxwt
     ELSE
@@ -211,7 +211,7 @@ contains
       P=rag*expkz*coskxwt
       ETA=RF%H/2_rp*coskxwt
       dUdX = -agkk_w*expkz*sinkxwt
-      dUdz = agkk_w*expkz*coskxwt
+      dUdZ = agkk_w*expkz*coskxwt
       dWdX = agkk_w*expkz*coskxwt
       dWdZ = agkk_w*expkz*sinkxwt
     END IF
