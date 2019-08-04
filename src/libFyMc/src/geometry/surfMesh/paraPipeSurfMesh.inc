@@ -72,10 +72,9 @@
         Integer :: nNodeP1, nNodeP2, nNodeP3, nNodeP4, nNodeP5, nNodeP6
         Integer :: nLNodeP1, nLNodeP2, nLNodeP3
 
-        Integer  :: nXp, nYp, nZp, nXh, nYh, nZh, nXLine, nYLine, nZLine, iLine
+        Integer  :: nXp, nYp, nZp, nXh, nYh, nZh, nXLine, nYLine, iLine
         Logical  :: xEven, yEven, zEven
         Real(RP) :: rSumX, rSumY, rSumZ
-        Real(RP) :: ratio, arg
 
         Real(RP) :: tmpX, tmpY, tmpZ
 
