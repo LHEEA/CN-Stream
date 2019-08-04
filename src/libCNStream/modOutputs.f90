@@ -26,6 +26,7 @@ use modCNInitialize
 use modReconstrucVol
 !use mfpGlobal, only : StringLength
 use mfpGeneral, only : typDictionaryPtr
+Implicit None
 
 contains
 
@@ -61,8 +62,8 @@ WRITE(*,*) "writeoutput ", option%writeoutput       ! Write output files =1 / do
 
 end subroutine printSetupFile
 
-subroutine buildOutputFile(option, namefileWoPath,outputFile)
-type(Option_type), intent(in) :: option
+subroutine buildOutputFile(namefileWoPath,outputFile)
+Implicit None
 character(len=*), intent(in) :: namefileWoPath
 character(len=StringLength), intent(out) :: outputFile
 
@@ -86,7 +87,7 @@ character(len=StringLength) :: outputFile
 integer, parameter :: out_unit=20
 
 
-call buildOutputFile(option, namefileWoPath,outputFile)
+call buildOutputFile(namefileWoPath,outputFile)
 open (unit=out_unit,file=outputFile,action="write",status="replace")
 
 
@@ -161,7 +162,7 @@ XL_dim = 1.0_RP
 XT_dim = 1.0_RP
 XV_dim = XL_dim / XT_dim
 
-call buildOutputFile(option, "waverf.cof",outputFile)
+call buildOutputFile("waverf.cof",outputFile)
 open(out_unit,file=outputFile,access="SEQUENTIAL",form="FORMATTED")
 
 C_S = RF%c_S + RF%c
@@ -182,7 +183,7 @@ enddo
 close(out_unit)
 
 
-call buildOutputFile(option, "waverf.DAT",outputFile)
+call buildOutputFile("waverf.DAT",outputFile)
 open(out_unit,file=outputFile)
 do J=1,option%N1+1
     write(out_unit,*)J,ABS(DBLE(b_g(J)))
@@ -206,7 +207,7 @@ type(Option_type), intent(in) :: option
 character(len=StringLength) :: outputFile
 
 if (onFile .EQV. .true.) then
-    call buildOutputFile(option, "resultsOutput.txt",outputFile)
+    call buildOutputFile("resultsOutput.txt",outputFile)
     open (unit=out_unit,file=outputFile,action="write",status="replace")
 end if
 
@@ -233,7 +234,7 @@ integer, parameter :: out_unit=10
 integer            :: i
 character(len=StringLength) :: outputFile
 
-call buildOutputFile(option, "Modes_CN_Stream.dat",outputFile)
+call buildOutputFile("Modes_CN_Stream.dat",outputFile)
 
 open (unit=out_unit,file=outputFile,action="write",status="replace")
 
@@ -269,7 +270,7 @@ real(rp) :: eta,detadx,detadt
 
 character(len=StringLength) :: outputFile
 
-call buildOutputFile(option, "VP_card_fitted.dat",outputFile)
+call buildOutputFile("VP_card_fitted.dat",outputFile)
 
 
 
@@ -326,7 +327,7 @@ real(rp) :: eta,detadx,detadt
 
 character(len=StringLength) :: outputFile
 
-call buildOutputFile(option, "FreeSurface_CN_Stream.dat",outputFile)
+call buildOutputFile("FreeSurface_CN_Stream.dat",outputFile)
 
 open (unit=out_unit,file=outputFile,action="write",status="replace")
 

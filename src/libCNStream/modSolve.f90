@@ -114,7 +114,7 @@ do i1=1,(Option%n_H + 1)
       call RF_decide(RF, option, iter)
 
       !if (option%printonscreen==1) then
-      !    call buildOutputFile(option, "DetailedResults.txt",outputFile)
+      !    call buildOutputFile("DetailedResults.txt",outputFile)
       !    call WriteRF(RF,outputFile)
       ! endif
 
