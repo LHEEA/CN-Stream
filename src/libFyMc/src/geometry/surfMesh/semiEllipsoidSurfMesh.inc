@@ -53,7 +53,7 @@
         Type(typParaPipeMesh) :: tmpParaPipeMesh
         integer  :: inode, iPanel, nX2
         Real(RP) :: xx, yy, zz, theta, psi
-        Real(RP) :: Rxx, Ryy, Rzz, R1
+        Real(RP) :: R1
         Real(RP),Dimension(3) :: refVec
         Real(RP) :: pRx, pRy, pRz
         Real(RP) :: dx1, dx2, phi, dtheta
