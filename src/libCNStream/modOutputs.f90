@@ -197,13 +197,12 @@ end subroutine RF_write_waverfcof
 
 !-----------------------------------------------------------------------
 
-subroutine WriteOutput(output, onFile, option)
+subroutine WriteOutput(output, onFile)
 Implicit None
 integer, parameter :: out_unit=20
 
 type(Output_type), intent(in) :: output
 logical, intent(in)           :: onFile
-type(Option_type), intent(in) :: option
 character(len=StringLength) :: outputFile
 
 if (onFile .EQV. .true.) then

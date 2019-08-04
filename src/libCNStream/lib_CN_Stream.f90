@@ -143,7 +143,7 @@ contains
 
     ! Check the evaluation at a given location
     call Evaluate_HPUVW(RF, option, x, y, z, time, thetaincident, hydrostatic, output)
-    if (WriteAscii) call WriteOutput(output, .TRUE., option)
+    if (WriteAscii) call WriteOutput(output, .TRUE.)
     !
     ! Tecplot output of the solution for visual checking
     ! Modal description of eta and phi
@@ -247,7 +247,7 @@ contains
     output%dVzdy = dWdX*sintheta
     output%dVzdz = dWdZ
 
-    if (WriteAscii) call WriteOutput(output, .TRUE., option)
+    if (WriteAscii) call WriteOutput(output, .TRUE.)
 
   end subroutine airy
 end module modCNS
