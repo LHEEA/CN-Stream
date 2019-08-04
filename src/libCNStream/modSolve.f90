@@ -70,7 +70,7 @@ type(iter_type)  :: iter
 integer  :: auto_N2, i1
 real(RP) :: H_target, H_start, dH
 
-character(len=StringLength) :: outputFile ! Only for debug
+! character(len=StringLength) :: outputFile ! Only for debug
 
 auto_N2 = 1;
 option%N2 = max(option%N1+5, 2*option%N1)
@@ -114,9 +114,9 @@ do i1=1,(Option%n_H + 1)
       call RF_decide(RF, option, iter)
 
       !if (option%printonscreen==1) then
-	!	call buildOutputFile(option, "DetailedResults.txt",outputFile)
-    !    call WriteRF(RF,outputFile)
-     ! endif
+      !    call buildOutputFile(option, "DetailedResults.txt",outputFile)
+      !    call WriteRF(RF,outputFile)
+      ! endif
 
       ! recompute useful quantities on refined modes
       ! necessary for correct size of dynamic tables (eta and slope)
@@ -324,7 +324,7 @@ type(iter_type), intent(inout)   :: iter
 !
 type(Modal_type) :: modal
 !
-character(len=StringLength) :: outputFile
+! character(len=StringLength) :: outputFile
 ! initialisation
 iter%N_iter = 0
 iter%F_max  = 1
