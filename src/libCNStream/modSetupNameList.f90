@@ -76,8 +76,6 @@ character(len=StringLength), intent(in) :: ConfigFile
 
 character(len=StringLength) :: inputDictName, waveInputType
 
-integer :: ios
-
 type(Input_type), intent(out) :: input
 type(Option_type), intent(out) :: option
 
