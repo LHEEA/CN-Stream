@@ -1,10 +1,13 @@
 add_executable(main
-  modComm_CN_Stream.f90
-  modVariablesRF.f90
-  CreateInputDict.f90
-  main.f90
-  )
-target_link_libraries(main dl)
+    modComm_CN_Stream.f90
+    modVariablesRF.f90
+    CreateInputDict.f90
+    main.f90
+    )
+
+if(UNIX)
+    target_link_libraries(main dl)
+endif()
 
 install(TARGETS main
         RUNTIME DESTINATION bin)
