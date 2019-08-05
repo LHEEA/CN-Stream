@@ -28,20 +28,20 @@ Subdict
   }
 }
 
-  Options
-  {
-    n_H  100;           // Number of steps in wave height
-    err_type  1;        // Error type: 0 absolute ; 1 relative
-    eps_err   1d-10;    // Tolerance on the equations
-    err_max  10.0d0;    // Divergence criteria
-    eps_inc   1d-10;    // Convergence criteria on unknowns
-    eps_N1    1d-10;    // Decision criteria on the modes
-    itermax   999;      // Maximum number of iterations
-    increment_type  1;  // Increment type for wave height / 0 linear ; 1 exponential
-    printonscreen  1;   // Print on screen =1 / do not print on screen = 0
-    writeoutput  1;     // Write output files =1 / do not Write output files = 0
-    $Subdict
-  }
+Options
+{
+  n_H  100;           // Number of steps in wave height
+  err_type  1;        // Error type: 0 absolute ; 1 relative
+  eps_err   1d-10;    // Tolerance on the equations
+  err_max  10.0d0;    // Divergence criteria
+  eps_inc   1d-10;    // Convergence criteria on unknowns
+  eps_N1    1d-10;    // Decision criteria on the modes
+  itermax   999;      // Maximum number of iterations
+  increment_type  1;  // Increment type for wave height / 0 linear ; 1 exponential
+  printonscreen  1;   // Print on screen =1 / do not print on screen = 0
+  writeoutput  1;     // Write output files =1 / do not Write output files = 0
+  $Subdict
+}
 
 waveStream
 {
@@ -50,8 +50,8 @@ waveStream
   GeneralModes    20;        // Number of modes for first evaluation
   WaveInput    Period;       // Period or Wavelength
 
-  Period 1.48472d0;         // Period or Wavelength / be careful: if GeneralDimension=0 --> this input value is set to 1
-  WaveHeight    4.7d-2;     // H if GeneralDimension=1 / H' (see documentation) if GeneralDimension=0
-  CurrentValue   0.0d0;     // value of current ; dimensional if GeneralDimension=1 / non-dimensional (see documentation) if GeneralDimension=1
-  CurrentType 0;            // type of current ; 1 mass transport / 0 Eulerian current
+  Period 1.48472d0;          // Period or Wavelength / be careful: if GeneralDimension=0 --> this input value is set to 1
+  WaveHeight    4.7d-2;      // H if GeneralDimension=1 / H' (see documentation) if GeneralDimension=0
+  CurrentValue   0.0d0;      // value of current ; dimensional if GeneralDimension=1 / non-dimensional (see documentation) if GeneralDimension=1
+  CurrentType 0;             // type of current ; 1 mass transport / 0 Eulerian current
 }
