@@ -33,8 +33,8 @@ The name of the dictionary can be specified as an argument.
 
 There are two ways to use CN-Stream as a library.
 
-- Use the declarations of the variables of the `variables_CN_Stream.h` and `variables_output_CN_Stream.h` and call the functions described in the source file `lib_CN_Stream.f90`.
-- Use the subroutines indicated in the communication module `mod_CN_Stream.f90`.
+- Use the declarations of the variables of the [`variables_CN_Stream.h`](src/libCNStream/variables_CN_Stream.h) and [`variables_output_CN_Stream.h`](src/libCNStream/variables_output_CN_Stream.h) and call the functions described in the source file [`lib_CN_Stream.f90`](src/libCNStream/lib_CN_Stream.f90).
+- Use the subroutines indicated in the communication module [`mod_CN_Stream.f90`](src/libCNStream/mod_CN_Stream.f90).
 
 ## CN-Stream source files
 
@@ -48,7 +48,7 @@ The main folder consists in:
 - `input` Folder with input file example
 - `output` Default folder output
 
-The code use the library libFyMc to read the “dictionary” input file.
+The code uses the library libFyMc to read the “dictionary” input file.
 The library is provided with the sources.
 
 ### CN-Stream - variables and types
@@ -67,8 +67,8 @@ In more details, those types include:
     * definition of the parameters of the wave, corresponding to the input parameters specified in the input file.
     * Modal amplitudes of the free surface elevation η and of the velocity potential φ (or equivalently the stream function ψ).
     * If needed, free surface elevation and slope in the spatial domain.
-- `option_type`: all options relative to the solution method, specified in input file. This type also includes the optimal number of points N1 and N2 resulting from the dedicated procedure.
-- `output_type`: defines for one location (X, Y, Z) the free surface elevation, the pressure and velocity components together with the necessary time and/or spatial derivatives of those components. The possible existence of a Y -component is associated to the definition of an angle of propagation as input, referenced as θ.
+- `Option_type`: all options relative to the solution method, specified in input file. This type also includes the optimal number of points N1 and N2 resulting from the dedicated procedure.
+- `Output_type`: defines for one location (X, Y, Z) the free surface elevation, the pressure and velocity components together with the necessary time and/or spatial derivatives of those components. The possible existence of a Y -component is associated to the definition of an angle of propagation as input, referenced as θ.
 
 ### CN-Stream - main program
 
