@@ -4,19 +4,19 @@ os: Visual Studio 2015
 
 environment:
   matrix:
-    - compiler: gcc-6.3.0-posix
+    - compiler: gcc-6.3.0-32-posix
       build_system: cmake
       generator: "MinGW Makefiles"
       cxx_path: 'C:\mingw-w64\i686-6.3.0-posix-dwarf-rt_v5-rev1\mingw32\bin'
-    - compiler: gcc-6.3.0-posix
+    - compiler: gcc-6.3.0-64-posix
       build_system: cmake
       generator: "MinGW Makefiles"
       cxx_path: 'C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin'
-    - compiler: gcc-7.3.0-posix
+    - compiler: gcc-7.3.0-64-posix
       build_system: cmake
       generator: "MinGW Makefiles"
       cxx_path: 'C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin'
-    - compiler: gcc-8.1.0-posix
+    - compiler: gcc-8.1.0-64-posix
       build_system: cmake
       generator: "MinGW Makefiles"
       cxx_path: 'C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin'
