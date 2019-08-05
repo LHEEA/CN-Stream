@@ -107,7 +107,7 @@ In CN-Stream, the non-linear regular water wave is characterized by:
 
 ### Input file
 
-The input file is assumed to be named `CN_Stream_input.dict`.
+The input file is assumed to be named [`CN_Stream_input.dict`](input/CN_Stream_input.dict).
 An example is provided in the [`input`](input/CN_Stream_input.dict) folder and details are provided hereafter.
 The `Options_solver` parameters are useful for an advanced user, in order to obtain solutions with a controlled accuracy and/or to look for waves close to the wave breaking limit.
 
@@ -175,7 +175,7 @@ Following files may be created:
 - `waverf.cof` gives the main important parameters of the simulation, namely λ, H, k, T, c, cS, cE, N1 + 1, N2 + 1, R, h (in dimensional or non-dimensional form depending on the value of input: GeneralDimension in the input file) as well as the modal amplitudes an and bn,
 - `waverf.dat` gives the modal amplitudes an and bn.
 In complement, different subroutines may be called to write the necessary outputs needed by the user. They are available inside the source files and a simple call in the main program will enable the corresponding outputs:
-- `WriteOutput`: this subroutine creates the file resultsOutput.txt containing at a given location and time all spatial quantities computed by CN-Stream (free surface elevation, velocities, pressures, derivatives, etc.).
-- `TecplotOutput_Modes`: this subroutine creates the file Modes_CN_Stream.dat containing the modal description of the free surface elevation and velocity potential, for use with Tecplot.
-- `TecplotOutput_VelocityPressure`: this subroutine creates the file VP_card_fitted.dat containing the velocity and pressure field under the simulated wave, for use with Tecplot.
-- `TecplotOutput_FreeSurface`: this subroutine creates the file FreeSurface_CN_Stream.dat, which provides the free surface elevation and slope.
+- `WriteOutput`: this subroutine creates the file `resultsOutput.txt` containing at a given location and time all spatial quantities computed by CN-Stream (free surface elevation, velocities, pressures, derivatives, etc.).
+- `TecplotOutput_Modes`: this subroutine creates the file `Modes_CN_Stream.dat` containing the modal description of the free surface elevation and velocity potential, for use with Tecplot.
+- `TecplotOutput_VelocityPressure`: this subroutine creates the file `VP_card_fitted.dat` containing the velocity and pressure field under the simulated wave, for use with Tecplot.
+- `TecplotOutput_FreeSurface`: this subroutine creates the file `FreeSurface_CN_Stream.dat`, which provides the free surface elevation and slope.
