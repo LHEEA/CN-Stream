@@ -1,0 +1,73 @@
+version: '{build}'
+
+os: Visual Studio 2015
+
+environment:
+  matrix:
+    - compiler: gcc-6.3.0-posix
+      build_system: cmake
+      generator: "MinGW Makefiles"
+      cxx_path: 'C:\mingw-w64\i686-6.3.0-posix-dwarf-rt_v5-rev1\mingw32\bin'
+
+configuration:
+  - Release
+
+build:
+  verbosity: minimal
+
+install:
+- ps: |
+    Write-Output "Compiler: $env:compiler"
+    Write-Output "Generator: $env:generator"
+    Write-Output "Env:Configuation: $env:configuration"
+    Write-Output "Env: $env"
+
+    if ($env:build_system -eq "cmake") {
+        # git bash conflicts with MinGW makefiles
+        if ($env:generator -eq "MinGW Makefiles") {
+            $env:path = $env:path.replace("C:\Program Files\Git\usr\bin;", "")
+            if ($env:cxx_path -ne "") {
+                $env:path += ";$env:cxx_path"
+            }
+        }
+    }
+
+before_build:
+- ps: |
+     $env:root=$env:APPVEYOR_BUILD_FOLDER
+     Write-Output "env:root: $env:root"
+
+build_script:
+- ps: |
+    # by default build with CMake
+    md _build -Force | Out-Null
+    cd _build
+
+    $conf = if ($env:generator -eq "MinGW Makefiles") {"-DCMAKE_BUILD_TYPE=$env:configuration"} else {"-DCMAKE_CONFIGURATION_TYPES=Debug;Release"}
+    & cmake -G "$env:generator" $conf ..
+    if ($LastExitCode -ne 0) {
+        throw "Exec: $ErrorMessage"
+    }
+    $cmake_parallel = if ($env:generator -eq "MinGW Makefiles") {"-j2"} else  {"/m"}
+    & cmake --build . --config $env:configuration -- $cmake_parallel
+    if ($LastExitCode -ne 0) {
+        throw "Exec: $ErrorMessage"
+    }
+
+
+skip_commits:
+  files:
+    - '**/*.md'
+
+test_script:
+- ps: |
+    if ($env:build_system -eq "cmake") {
+        & ctest -C $env:configuration --timeout 600 --output-on-failure
+        if ($LastExitCode -ne 0) {
+            throw "Exec: $ErrorMessage"
+        }
+    }
+
+#artifacts:
+#  - path: '_build/CMakeFiles/*.log'
+#    name: logs
