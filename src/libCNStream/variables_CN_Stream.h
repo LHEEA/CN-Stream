@@ -1,4 +1,4 @@
-type  :: RF_type
+type :: RF_type
     integer :: dimen          ! dimension
     integer :: current
     integer :: lorT           ! input wavelength (=1) or period (=0)
@@ -9,7 +9,7 @@ type  :: RF_type
     real(RP) :: k             ! wave number
     real(RP) :: lambda        ! wavelength
     real(RP) :: T             ! period
-    real(RP) :: U             !
+    real(RP) :: U
     real(RP) :: C
 
     real(RP), dimension (:), allocatable :: a
@@ -37,6 +37,6 @@ type :: Option_type
     integer  :: N2_eff
     integer  :: modes
     integer  :: printonscreen   ! 1 yes ; 0 no
-    integer  :: writeoutput   ! 1 yes ; 0 no
+    integer  :: writeoutput     ! 1 yes ; 0 no
     type(typDictionaryPtr) :: optionDict
 end type Option_type
