@@ -53,7 +53,12 @@ The library is provided with the sources.
 
 ### CN-Stream - variables and types
 
-The different Fortran types (`RF_type`, `option_type`, `output_type`) are defined explicitly in `variables_CN_Stream.h` and `variables_output_CN_Stream.h` and are included when needed in CN-Stream.
+The different Fortran types ([`RF_type`](src/libCNStream/variables_CN_Stream.h),
+[`Option_type`](src/libCNStream/variables_CN_Stream.h),
+[`Output_type`](src/libCNStream/variables_output_CN_Stream.h)) are defined explicitly in
+[`variables_CN_Stream.h`](src/libCNStream/variables_CN_Stream.h) and
+[`variables_output_CN_Stream.h`](src/libCNStream/variables_output_CN_Stream.h)
+and are included when needed in CN-Stream.
 It allows the user to include them easily into CN-Stream but also in another code, which makes use of the CN-Stream library.
 
 In more details, those types include:
@@ -69,22 +74,22 @@ In more details, those types include:
 
 The set of Fortran files needed in order to compile CN-Stream is listed hereafter with a brief description of the purpose of each of the source file.
 
-- **`mod_CN_Stream.f90`**: Module allowing communication without using complex datatypes (C++)
-- **`main_CN_Stream.f90`**: Main program for CN-Stream computations
-- **`modSolve.f90`**: Solves the equation of the problem described above
-- **`modCNinitialize.f90`**: Initialization of CN-Stream computation
-- **`modUtils.f90`**: Useful functions
-- **`modMatrix.f90`**: Computes the inverse matrix from the least square method
-- **`modType.f90`**: Definition of types and useful constants
-- **`modModal.f90`**: Useful functions used in modSolve.f90
-- **`HOS_modlinear_wave.f90`**: Computation of linear dispersion relation
-- **`HOS_modmaths.f90`**: Useful mathematical functions
-- **`modSetupNameList.f90`**: Read the input NML file
-- **`modReconstrucVol.f90`**: Evaluate wave elevation, pressure, velocity and its derivatives
-- **`modReconstruction.f90`**: Recompute wave elevation, pressure, velocity and wave slope from Fourier coefficients and the other way around
-- **`modOutputs.f90`**: Write outputs on files
-- **`variables_CN_Stream.h`**: Definition of Fortran types: RF_type and option_type
-- **`variables_output_CN_Stream.h`**: Definition of Fortran type: output_type
+- [**`mod_CN_Stream.f90`**](src/libCNStream/mod_CN_Stream.f90): Module allowing communication without using complex datatypes (C++)
+- [**`main_CN_Stream.f90`**](src/libCNStream/main_CN_Stream.f90): Main program for CN-Stream computations
+- [**`modSolve.f90`**](src/libCNStream/modSolve.f90): Solves the equation of the problem described above
+- [**`modCNinitialize.f90`**](src/libCNStream/modCNinitialize.f90): Initialization of CN-Stream computation
+- [**`modUtils.f90`**](src/libCNStream/modUtils.f90): Useful functions
+- [**`modMatrix.f90`**](src/libCNStream/modMatrix.f90): Computes the inverse matrix from the least square method
+- [**`modType.f90`**](src/libCNStream/modType.f90): Definition of types and useful constants
+- [**`modModal.f90`**](src/libCNStream/modModal.f90): Useful functions used in modSolve.f90
+- [**`HOS_modlinear_wave.f90`**](src/libCNStream/HOS_modlinear_wave.f90): Computation of linear dispersion relation
+- [**`HOS_modmaths.f90`**](src/libCNStream/HOS_modmaths.f90): Useful mathematical functions
+- [**`modSetupNameList.f90`**](src/libCNStream/modSetupNameList.f90): Read the input NML file
+- [**`modReconstrucVol.f90`**](src/libCNStream/modReconstrucVol.f90): Evaluate wave elevation, pressure, velocity and its derivatives
+- [**`modReconstruction.f90`**](src/libCNStream/modReconstruction.f90): Recompute wave elevation, pressure, velocity and wave slope from Fourier coefficients and the other way around
+- [**`modOutputs.f90`**](src/libCNStream/modOutputs.f90): Write outputs on files
+- [**`variables_CN_Stream.h`**](src/libCNStream/variables_CN_Stream.h): Definition of Fortran types: RF_type and option_type
+- [**`variables_output_CN_Stream.h`**](src/libCNStream/variables_output_CN_Stream.h): Definition of Fortran type: output_type
 
 ## Inputs and Outputs
 
@@ -103,7 +108,7 @@ In CN-Stream, the non-linear regular water wave is characterized by:
 ### Input file
 
 The input file is assumed to be named `CN_Stream_input.dict`.
-An example is provided in the `input` folder and details are provided hereafter.
+An example is provided in the [`input`](input/CN_Stream_input.dict) folder and details are provided hereafter.
 The `Options_solver` parameters are useful for an advanced user, in order to obtain solutions with a controlled accuracy and/or to look for waves close to the wave breaking limit.
 
 - - -
