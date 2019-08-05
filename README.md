@@ -2,6 +2,7 @@
 Computation of nonlinear regular ocean waves using stream function
 
 [![Build Status](https://travis-ci.org/Gjacquenot/CN-Stream.svg?branch=master)](https://travis-ci.org/Gjacquenot/CN-Stream)
+[![Build status](https://ci.appveyor.com/api/projects/status/sxr99g73344isn22?svg=true)](https://ci.appveyor.com/project/Gjacquenot/cn-stream)
 [![codecov](https://codecov.io/gh/Gjacquenot/CN-Stream/branch/master/graph/badge.svg)](https://codecov.io/gh/Gjacquenot/CN-Stream)
 
 ## Installation/Compilation
