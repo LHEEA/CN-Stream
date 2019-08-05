@@ -1,2 +1,7 @@
 add_subdirectory(C++)
-add_subdirectory(fortran)
+if(UNIX)
+    message(STATUS "Activating fortran example")
+    add_subdirectory(fortran)
+else()
+    message(STATUS "Deactivating fortran example because of shared library loading implemented only for so file")
+endif()
