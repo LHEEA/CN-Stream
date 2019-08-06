@@ -10,7 +10,7 @@ Computation of nonlinear regular ocean waves using stream function
 The code can be compiled on any computer architecture.
 One only needs a Fortran compiler (for instance gfortran, the GNU Fortran compiler, part of GCC).
 A makefile is provided but the recommended procedure is to use cmake.
-The following commands can be executed in the root folder where `CMakeLists.txt` is located, to compile the dependency, the executable and the shared library:
+The following commands can be executed in the root folder where [`CMakeLists.txt`](CMakeLists.txt) is located, to compile the dependency, the executable and the shared library:
 
 - `cmake -H. -Bbuild`
 - `cmake --build build`
@@ -43,11 +43,11 @@ There are two ways to use CN-Stream as a library.
 
 The main folder consists in:
 
-- `CMakeLists.txt`
-- `example` Folder with examples of using the library through the communication module from Fortran and C++
-- `src` Folder with source files (include also the sources of libFyMc)
-- `input` Folder with input file example
-- `output` Default folder output
+- [`CMakeLists.txt`](CMakeLists.txt) Main CMakeLists.txt that compiles library, program and examples.
+- [`example`](example) Folder with examples of using the library through the communication module from Fortran and C++
+- [`src`](src) Folder with source files (include also the sources of libFyMc)
+- [`input`](input) Folder with input file example
+- [`output`](output) Default folder output
 
 The code uses the library libFyMc to read the “dictionary” input file.
 The library is provided with the sources.
@@ -56,7 +56,7 @@ The library is provided with the sources.
 
 The different Fortran types ([`RF_type`](src/libCNStream/variables_CN_Stream.h),
 [`Option_type`](src/libCNStream/variables_CN_Stream.h),
-[`Output_type`](src/libCNStream/variables_output_CN_Stream.h)) are defined explicitly in
+[`Output_type`](src/libCNStream/variables_output_CN_Stream.h) are defined explicitly in
 [`variables_CN_Stream.h`](src/libCNStream/variables_CN_Stream.h) and
 [`variables_output_CN_Stream.h`](src/libCNStream/variables_output_CN_Stream.h)
 and are included when needed in CN-Stream.
@@ -64,12 +64,12 @@ It allows the user to include them easily into CN-Stream but also in another cod
 
 In more details, those types include:
 
-- `RF_type`
+- [`RF_type`](src/libCNStream/variables_CN_Stream.h)
     * definition of the parameters of the wave, corresponding to the input parameters specified in the input file.
     * Modal amplitudes of the free surface elevation η and of the velocity potential φ (or equivalently the stream function ψ).
     * If needed, free surface elevation and slope in the spatial domain.
-- `Option_type`: all options relative to the solution method, specified in input file. This type also includes the optimal number of points N1 and N2 resulting from the dedicated procedure.
-- `Output_type`: defines for one location (X, Y, Z) the free surface elevation, the pressure and velocity components together with the necessary time and/or spatial derivatives of those components. The possible existence of a Y -component is associated to the definition of an angle of propagation as input, referenced as θ.
+- [`Option_type`](src/libCNStream/variables_CN_Stream.h): all options relative to the solution method, specified in input file. This type also includes the optimal number of points N1 and N2 resulting from the dedicated procedure.
+- [`Output_type`](src/libCNStream/variables_output_CN_Stream.h): defines for one location (X, Y, Z) the free surface elevation, the pressure and velocity components together with the necessary time and/or spatial derivatives of those components. The possible existence of a Y -component is associated to the definition of an angle of propagation as input, referenced as θ.
 
 ### CN-Stream - main program
 
