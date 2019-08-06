@@ -5,6 +5,14 @@ Computation of nonlinear regular ocean waves using stream function
 [![Build status](https://ci.appveyor.com/api/projects/status/sxr99g73344isn22?svg=true)](https://ci.appveyor.com/project/Gjacquenot/cn-stream)
 [![codecov](https://codecov.io/gh/Gjacquenot/CN-Stream/branch/master/graph/badge.svg)](https://codecov.io/gh/Gjacquenot/CN-Stream)
 
+## Reference
+
+The code implemented in this repository is explained in article
+[*CN-Stream: Open-source library for nonlinear regular waves using stream function theory*](https://hal.archives-ouvertes.fr/hal-02013226)
+from Guillaume Ducrozet, Benjamin Bouscasse, Maïté Gouin, Pierre Ferrant and Félicien Bonnefoy.
+
+Article can be downloaded on [arxiv](http://arxiv.org/pdf/1901.10577).
+
 ## Installation/Compilation
 
 The code can be compiled on any computer architecture.
