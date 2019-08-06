@@ -51,11 +51,18 @@ set(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_COMPILE_PATH}/lib)
 
 set(CNSTREAM_LIB_OUT ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
-if ("${CMAKE_Fortran_COMPILER_ID}" MATCHES "Intel")
-    set(CMAKE_Fortran_FLAGS "-fPIC -O3 -xHOST -ipo -ip -O0 -traceback -check all -CB -check uninit -g")
-    #set(CMAKE_Fortran_FLAGS "-O3 -xHOST -ipo -ip -O0 -traceback -check all -warn all")
-elseif("${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU")
-    set(CMAKE_Fortran_FLAGS "-fPIC -O3 -march=corei7 -msse2 -funroll-loops -fno-protect-parens -ffast-math -fcheck=bounds")
+message(STATUS "CMAKE_Fortran_FLAGS ${CMAKE_Fortran_FLAGS}")
+message(STATUS "CMAKE_Fortran_COMPILER_ID ${CMAKE_Fortran_COMPILER_ID}")
+
+if (DEFINED USER_DEFINED_COMPILATION_OPTION)
+    set(CMAKE_Fortran_FLAGS ${USER_DEFINED_COMPILATION_OPTION})
+else()
+    if ("${CMAKE_Fortran_COMPILER_ID}" MATCHES "Intel")
+        set(CMAKE_Fortran_FLAGS "-fPIC -O3 -xHOST -ipo -ip -O0 -traceback -check all -CB -check uninit -g")
+        #set(CMAKE_Fortran_FLAGS "-O3 -xHOST -ipo -ip -O0 -traceback -check all -warn all")
+    elseif("${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU")
+        set(CMAKE_Fortran_FLAGS "-fPIC -O3 -funroll-loops -fno-protect-parens -fcheck=bounds")
+    endif()
 endif()
 
 # In case you need to compile shared library in openFoam. Uncomment the belows.
