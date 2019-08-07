@@ -68,14 +68,14 @@ matrix:
         - Fortran_COMPILER='gfortran-7'
         - BUILD_TYPE='Coverage'
         - CMAKE_GENERATOR='Unix Makefiles'
-#    - os: osx
-#      compiler: gcc
-#      env:
-#        - CXX_COMPILER='g++-9'
-#        - C_COMPILER='gcc-9'
-#        - Fortran_COMPILER='gfortran-9'
-#        - BUILD_TYPE='Release'
-#        - CMAKE_GENERATOR='Unix Makefiles'
+    - os: osx
+      compiler: gcc
+      env:
+        - CXX_COMPILER='g++-8'
+        - C_COMPILER='gcc-8'
+        - Fortran_COMPILER='gfortran-8'
+        - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
 #    - os: windows
 #      compiler: mingw
 #      env:
@@ -96,7 +96,7 @@ install:
       brew update &> /dev/null
       brew cask uninstall --force oclint
       brew upgrade cmake
-      brew install gcc@9
+      brew install gcc@8
       brew info gcc
     elif [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
       echo "linux"
