@@ -92,7 +92,9 @@ before_install:
 
 install:
   - |
-    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then sudo softwareupdate -l; fi
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then sudo softwareupdate -l > soft.txt; fi
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then cat soft.txt; fi
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then cat soft.txt | grep "Command Line Tools" | cut -f2 -d"*" | while read -r line ; do sudo softwareupdate -i "$line"; done ; fi
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
       brew update &> /dev/null
       brew cask uninstall --force oclint
