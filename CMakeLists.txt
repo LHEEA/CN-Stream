@@ -61,7 +61,7 @@ else()
         set(CMAKE_Fortran_FLAGS "-fPIC -O3 -xHOST -ipo -ip -O0 -traceback -check all -CB -check uninit -g")
         #set(CMAKE_Fortran_FLAGS "-O3 -xHOST -ipo -ip -O0 -traceback -check all -warn all")
     elseif("${CMAKE_Fortran_COMPILER_ID}" MATCHES "GNU")
-        set(CMAKE_Fortran_FLAGS "-fPIC -O3 -march=native -funroll-loops -fno-protect-parens -fcheck=bounds")
+        set(CMAKE_Fortran_FLAGS "-fPIC -O3 -march=native -funroll-loops -fno-protect-parens -fcheck=bounds -ffast-math")
     endif()
 endif()
 
