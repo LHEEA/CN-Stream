@@ -19,5 +19,7 @@ int main()
     calcRF(waveConfigFile, RF, option);
     recRF(RF, option, x, y, z, t, thetaincident, hydrostatic, output);
 
+    std::cout << output << std::endl;
+
     return 0;
 }

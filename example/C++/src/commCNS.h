@@ -2,17 +2,29 @@
 #define DEF_COMMCNS_H
 
 #include <string>
+#include <iostream>
 
 struct Output_type{
     double eta;
     double pressure;
     double Vx, Vy, Vz;
 
-    double detadt, detadx,detady;
+    double detadt, detadx, detady;
     double dVxdx, dVxdy, dVxdz;
     double dVydx, dVydy, dVydz;
     double dVzdx, dVzdy, dVzdz;
 };
+
+inline std::ostream& operator<<(std::ostream& out, const Output_type& s) {
+  out << "eta                     = " << s.eta << std::endl
+      << "pressure                = " << s.pressure << std::endl
+      << "Vx, Vy, Vz              = " << s.Vx << ", " << s.Vy << ", "<< s.Vz << std::endl
+      << "detadt, detadx, detady  = " << s.detadt << ", " << s.detadx << ", "<< s.detady << std::endl
+      << "dVxdx, dVxdy, dVxdz     = " << s.dVxdx << ", " << s.dVxdy << ", "<< s.dVxdz << std::endl
+      << "dVydx, dVydy, dVydz     = " << s.dVydx << ", " << s.dVydy << ", "<< s.dVydz << std::endl
+      << "dVzdx, dVzdy, dVzdz     = " << s.dVzdx << ", " << s.dVzdy << ", "<< s.dVzdz << std::endl;
+  return out;
+}
 
 struct RF_type{
     int dimen;          // dimension
