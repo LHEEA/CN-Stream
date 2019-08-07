@@ -92,6 +92,7 @@ before_install:
 
 install:
   - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then sudo softwareupdate -l; fi
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
       brew update &> /dev/null
       brew cask uninstall --force oclint
