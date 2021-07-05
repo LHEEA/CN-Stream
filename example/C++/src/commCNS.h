@@ -2,7 +2,6 @@
 #define DEF_COMMCNS_H
 
 #include <string>
-#include <string.h>
 #include <iostream>
 
 struct Output_type{
@@ -10,11 +9,22 @@ struct Output_type{
     double pressure;
     double Vx, Vy, Vz;
 
-    double detadt, detadx,detady;
+    double detadt, detadx, detady;
     double dVxdx, dVxdy, dVxdz;
     double dVydx, dVydy, dVydz;
     double dVzdx, dVzdy, dVzdz;
 };
+
+inline std::ostream& operator<<(std::ostream& out, const Output_type& s) {
+  out << "eta                     = " << s.eta << std::endl
+      << "pressure                = " << s.pressure << std::endl
+      << "Vx, Vy, Vz              = " << s.Vx << ", " << s.Vy << ", "<< s.Vz << std::endl
+      << "detadt, detadx, detady  = " << s.detadt << ", " << s.detadx << ", "<< s.detady << std::endl
+      << "dVxdx, dVxdy, dVxdz     = " << s.dVxdx << ", " << s.dVxdy << ", "<< s.dVxdz << std::endl
+      << "dVydx, dVydy, dVydz     = " << s.dVydx << ", " << s.dVydy << ", "<< s.dVydz << std::endl
+      << "dVzdx, dVzdy, dVzdz     = " << s.dVzdx << ", " << s.dVzdy << ", "<< s.dVzdz << std::endl;
+  return out;
+}
 
 struct RF_type{
     int dimen;          // dimension
@@ -25,10 +35,10 @@ struct RF_type{
     double hdepth;        // depth
     double H;             // wave height
     double k;             // wave number
-    double lambda;        // wavelength 
+    double lambda;        // wavelength
     double T;             // period
     double U;             //
-    double C;             
+    double C;
 
     double R;
     double Q;
@@ -53,21 +63,12 @@ struct Option_type{
     int writeoutput;   // 1 yes ; 0 no
 };
 
-void calcRF(const std::string ConfigFile, RF_type &RF, Option_type &option);
+void calcRF(const std::string& ConfigFile, RF_type &RF, Option_type &option);
 
 void recRF(RF_type &RF, Option_type &option, const double &x, const double &y,const double &z,const double &t,const double &thetaincident,const bool &hydrostatic, Output_type &output);
 
-void initAiry(const std::string ConfigFile, RF_type &RF, Option_type &option);
+void initAiry(const std::string& ConfigFile, RF_type &RF, Option_type &option);
 
 void airy(RF_type &RF, Option_type &option, const double &x, const double &y,const double &z,const double &t,const double &thetaincident,const bool &hydrostatic, Output_type &output);
-
-
-extern "C" void __modcns_MOD_calcrf(const char ConfigFile[], const RF_type* RF,const Option_type* option);
-
-extern "C" void __modcns_MOD_recrf(const RF_type* RF, const Option_type* option,const double* x,const double* y,const double* z,const double* t, const double* thetaincident,const bool *hydrostatic,const Output_type* output);
-
-extern "C" void __modcns_MOD_initairy(const char ConfigFile[], const RF_type* RF,const Option_type* option);
-
-extern "C" void __modcns_MOD_airy(const RF_type* RF, const Option_type* option,const double* x,const double* y,const double* z,const double* t, const double* thetaincident,const bool *hydrostatic,const Output_type* output);
 
 #endif

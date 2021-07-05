@@ -1,23 +1,25 @@
-#include <iostream>
 #include <string>
 #include "commCNS.h"
 
-using namespace std;
-
 int main()
 {
+    const std::string waveConfigFile("RF_input.dict");
 
-     string waveConfigFile;
+    struct RF_type RF;
+    struct Option_type option;
+    struct Output_type output;
 
-     struct RF_type RF;
-     struct Option_type option;
-     struct Output_type output;
+    const double x = 0.0;
+    const double y = 0.0;
+    const double z = 0.0;
+    const double t = 0.0;
+    const double thetaincident = 0.0;
+    const bool hydrostatic = false;
 
-    
-    waveConfigFile = "RF_input.dict";
+    calcRF(waveConfigFile, RF, option);
+    recRF(RF, option, x, y, z, t, thetaincident, hydrostatic, output);
 
-    calcRF(waveConfigFile,RF,option);
-    recRF(RF, option, 0., 0., 0., 0., 0., false, output);
+    std::cout << output << std::endl;
 
-     return 0;
+    return 0;
 }

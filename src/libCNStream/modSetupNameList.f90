@@ -76,8 +76,6 @@ character(len=StringLength), intent(in) :: ConfigFile
 
 character(len=StringLength) :: inputDictName, waveInputType
 
-integer :: ios
-
 type(Input_type), intent(out) :: input
 type(Option_type), intent(out) :: option
 
@@ -95,7 +93,7 @@ Call dictPtr%initialize(fileDir, fileName, fileExt)
 !!... Show Dictionary Contents
 Call dictPtr%print()
 
-inputDictName = dictPtr%getChar("waveInput");
+inputDictName = dictPtr%getChar("waveInput")
 inputDict = dictPtr%subDict(inputDictName)
 
 Call inputDict%print()

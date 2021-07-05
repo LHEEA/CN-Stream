@@ -129,11 +129,11 @@ subroutine callCNStream(CNStreamPath)
 
     handle=dlopen(trim(libCNStreamPath)//c_null_char, RTLD_LAZY)
     if (.not. c_associated(handle))then
-        write(*,*), 'Unable to load shared library : ', trim(libCNStreamPath)
+        write(*,*) 'Unable to load shared library : ', trim(libCNStreamPath)
         isCNStreamLoad = .FALSE.
         stop
     else
-        write(*,*), 'Load shared library : ', trim(libCNStreamPath)
+        write(*,*) 'Load shared library : ', trim(libCNStreamPath)
         isCNStreamLoad = .TRUE.
 
         subroutineName = "__modcns_MOD_calcrf"
@@ -142,10 +142,10 @@ subroutine callCNStream(CNStreamPath)
         subroutineName = "__modcns_MOD_initairy"
         Call linkCNStreamSubroutine(ptr_initAiry, subroutineName)
 
-        subroutineName = "__modcns_MOD_recrf" 
+        subroutineName = "__modcns_MOD_recrf"
         Call linkCNStreamSubroutine(ptr_reconstructRF, subroutineName)
 
-        subroutineName = "__modcns_MOD_airy" 
+        subroutineName = "__modcns_MOD_airy"
         Call linkCNStreamSubroutine(ptr_airy, subroutineName)
     end if
 end subroutine

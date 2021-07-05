@@ -23,6 +23,7 @@ MODULE modCNS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
 use iso_c_binding
+implicit none
 
 contains
   subroutine calcRF(C_ConfigFile, RF, option) &
@@ -40,6 +41,7 @@ contains
     type(Option_type), intent(out)  :: option
 
     type(Input_type)  :: input
+    integer :: i
 
     ConfigFile = ''
     do i = 1, StringLength
@@ -88,6 +90,7 @@ contains
       type(Option_type), intent(out)  :: option
 
       type(Input_type)  :: input
+      integer :: i
 
       ConfigFile = ''
       do i = 1, StringLength
@@ -127,20 +130,20 @@ contains
     type(Output_type), intent(out) :: output
     real(c_double),  intent(in),optional         :: max_exp
     logical(c_bool), intent(in)            :: C_hydrostatic
-    logical :: hydrosatic
+    logical :: hydrostatic
     logical :: WriteAscii = .FALSE.
 
     if(C_hydrostatic) THEN
-      hydrosatic = .TRUE.
+      hydrostatic = .TRUE.
     else
-      hydrosatic = .False.
+      hydrostatic = .False.
     endif
     !real(RP) :: U, dUdx, dWdx
     !real(RP) :: xoblique, detax
 
     ! Check the evaluation at a given location
-    call Evaluate_HPUVW(RF, option, x, y, z, time, thetaincident, hydrosatic, output)
-    if (WriteAscii) call WriteOutput(output, .TRUE., option)
+    call Evaluate_HPUVW(RF, option, x, y, z, time, thetaincident, hydrostatic, output)
+    if (WriteAscii) call WriteOutput(output, .TRUE.)
     !
     ! Tecplot output of the solution for visual checking
     ! Modal description of eta and phi
@@ -170,18 +173,25 @@ contains
 
     real(RP) ::omega,expkz, coshkzd, coshkd, sinhkzd, sinhkd, agk_w, agkk_w, aw, awk, rag, ak, coskxwt, sinkxwt, costheta, sintheta
     real(RP) :: U,W,ETA,P,dUdX,dUdZ,dWdX,dWdZ,dETAdt,dETAdX
+    real(c_double) :: z_hydrostatic
 
     omega = (2*pi/RF%T)
     costheta = COS(thetaincident)
     sintheta = SIN(thetaincident)
 
+    if (hydrostatic) then
+      z_hydrostatic = 1.0
+    else
+      z_hydrostatic = 0.0
+    end if
+
     if(RF%k*RF%hdepth < 10) THEN
-      coshkzd = COSH(RF%k*(z-hydrosatic+RF%hdepth))
+      coshkzd = COSH(RF%k*(z-z_hydrostatic+RF%hdepth))
       coshkd =COSH(RF%k*(RF%hdepth))
-      sinhkzd = sinH(RF%k*(z-hydrosatic+RF%hdepth))
+      sinhkzd = sinH(RF%k*(z-z_hydrostatic+RF%hdepth))
       sinhkd =sinH(RF%k*(RF%hdepth))
     ELSE
-      expkz = EXP(RF%k*(z-hydrosatic))
+      expkz = EXP(RF%k*(z-z_hydrostatic))
     END IF
 
     agk_w=RF%H/2_rp*RF%g*RF%k/omega
@@ -191,10 +201,8 @@ contains
     rag = RF%H/2_rp*RF%g
     ak = RF%H/2_rp*RF%k
 
-
-
-    coskxwt = COS(RF%k*(x*costheta+y*sintheta)-omega*t)
-    sinkxwt = SIN(RF%k*(x*costheta+y*sintheta)-omega*t)
+    coskxwt = COS(RF%k*(x*costheta+y*sintheta)-omega*time)
+    sinkxwt = SIN(RF%k*(x*costheta+y*sintheta)-omega*time)
 
     if(RF%k*RF%hdepth < 10) THEN
       U = agk_w*coshkzd/coshkd*coskxwt
@@ -202,7 +210,7 @@ contains
       P=rag*coshkzd/coshkd*coskxwt
       ETA=RF%H/2_rp*coskxwt
       dUdX = -agkk_w*coshkzd/coshkd*sinkxwt
-      dUdz = agkk_w*sinhkzd/coshkd*coskxwt
+      dUdZ = agkk_w*sinhkzd/coshkd*coskxwt
       dWdX = agkk_w*sinhkzd/sinhkd*coskxwt
       dWdZ = agkk_w*coshkzd/sinhkd*sinkxwt
     ELSE
@@ -211,7 +219,7 @@ contains
       P=rag*expkz*coskxwt
       ETA=RF%H/2_rp*coskxwt
       dUdX = -agkk_w*expkz*sinkxwt
-      dUdz = agkk_w*expkz*coskxwt
+      dUdZ = agkk_w*expkz*coskxwt
       dWdX = agkk_w*expkz*coskxwt
       dWdZ = agkk_w*expkz*sinkxwt
     END IF
@@ -239,7 +247,7 @@ contains
     output%dVzdy = dWdX*sintheta
     output%dVzdz = dWdZ
 
-    if (WriteAscii) call WriteOutput(output, .TRUE., option)
+    if (WriteAscii) call WriteOutput(output, .TRUE.)
 
   end subroutine airy
 end module modCNS

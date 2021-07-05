@@ -161,10 +161,8 @@ end subroutine RF_initialize
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
-subroutine DeallocateRF(RF)
+subroutine DeallocateRF()
 !
-type(RF_type), intent(inout) :: RF
-
 IF (ALLOCATED (a_g)) DEALLOCATE (a_g)
 IF (ALLOCATED (b_g)) DEALLOCATE (b_g)
 IF (ALLOCATED (eta_g)) DEALLOCATE (eta_g)

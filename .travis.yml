@@ -1,0 +1,140 @@
+language: cpp
+sudo: false
+dist: trusty
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      addons: &gcc5
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+            - gcc-5
+            - gfortran-5
+      env:
+        - CXX_COMPILER='g++-5'
+        - C_COMPILER='gcc-5'
+        - Fortran_COMPILER='gfortran-5'
+        - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
+    - os: linux
+      compiler: gcc
+      addons: &gcc6
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - gcc-6
+            - gfortran-6
+      env:
+        - CXX_COMPILER='g++-6'
+        - C_COMPILER='gcc-6'
+        - Fortran_COMPILER='gfortran-6'
+        - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
+    - os: linux
+      compiler: gcc
+      addons: &gcc7
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+            - gcc-7
+            - gfortran-7
+      env:
+        - CXX_COMPILER='g++-7'
+        - C_COMPILER='gcc-7'
+        - Fortran_COMPILER='gfortran-7'
+        - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
+    - os: linux
+      compiler: gcc
+      addons: &gcc7
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+            - gcc-7
+            - gfortran-7
+      env:
+        - CXX_COMPILER='g++-7'
+        - C_COMPILER='gcc-7'
+        - Fortran_COMPILER='gfortran-7'
+        - BUILD_TYPE='Coverage'
+        - CMAKE_GENERATOR='Unix Makefiles'
+    - os: osx
+      compiler: gcc
+      env:
+        - CXX_COMPILER='g++-7'
+        - C_COMPILER='gcc-7'
+        - Fortran_COMPILER='gfortran-7'
+        - BUILD_TYPE='Release'
+        - CMAKE_GENERATOR='Unix Makefiles'
+#    - os: windows
+#      compiler: mingw
+#      env:
+#        - CXX_COMPILER='g++'
+#        - C_COMPILER='gcc'
+#        - Fortran_COMPILER='gfortran'
+#        - BUILD_TYPE='Release'
+#        - CMAKE_GENERATOR='MinGW Makefiles'
+
+before_install:
+  - test -n $CC && unset CC
+  - test -n $CXX && unset CXX
+  - test -n $FC && unset FC
+
+install:
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then sudo softwareupdate -l > soft.txt; fi
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then cat soft.txt; fi
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then cat soft.txt | grep "Command Line Tools" | cut -f2 -d"*" | while read -r line ; do sudo softwareupdate -i "$line"; done ; fi
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+      brew update &> /dev/null
+      brew cask uninstall --force oclint
+      brew upgrade cmake
+      brew install gcc@7
+      brew info gcc
+    elif [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      echo "linux"
+    elif [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
+      echo "windows"
+      echo $PATH
+    fi
+
+before_script:
+  - mkdir cnstream-build && cd cnstream-build
+  # Configure
+  - >
+     cmake $TRAVIS_BUILD_DIR
+     -G"${CMAKE_GENERATOR}"
+     -DCMAKE_CXX_COMPILER=${CXX_COMPILER}
+     -DCMAKE_C_COMPILER=${C_COMPILER}
+     -DCMAKE_Fortran_COMPILER=${Fortran_COMPILER}
+     -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
+     -DCMAKE_INSTALL_PREFIX=~/cnstream
+  # Build
+  - make
+
+script:
+  # Test the program
+  - make test ARGS="-V"
+  # Create package
+  - make package
+  # Make sure we can install with no issues.
+  - make install
+  # Create coverage report
+  - if [[ "$BUILD_TYPE" == "Coverage" ]];
+    then
+    echo "Coverage";
+    find $TRAVIS_BUILD_DIR -type f -name "*.gcno";
+    find $TRAVIS_BUILD_DIR -type f -name "*.gcna";
+    make coverage;
+    bash <(curl -s https://codecov.io/bash) -X gcov;
+    fi

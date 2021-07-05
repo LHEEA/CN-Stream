@@ -107,7 +107,7 @@ thetaincident=outputsDict%getRealOrDefault("theta",0.0_rp)
 ! thetaincident=0.0_rp
 !
 call Evaluate_HPUVW(RF, option, x, y, z, time, thetaincident, hydrostatic, output)
-if (WriteAscii) call WriteOutput(output, .TRUE., option)
+if (WriteAscii) call WriteOutput(output, .TRUE.)
 !
 ! Tecplot output of the solution for visual checking
 ! Modal description of eta and phi

@@ -146,7 +146,7 @@ contains
                         ENDIF
                     ELSEIF (IPTV(K).GT.1) THEN
                         WRITE(*,*) 'SINGULAR MATRIX'
-						READ(*,*)
+                        READ(*,*)
                     ENDIF
                 ENDDO
             ENDIF

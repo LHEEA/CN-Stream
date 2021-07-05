@@ -16,3 +16,6 @@ example/fortran/Computation/libCNStream.so
 src/libFyMc/example/testDict/*.o
 # ignore output files
 MATLAB/waverf.cof
+# ide
+.vscode
+build*

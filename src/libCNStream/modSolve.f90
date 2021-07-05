@@ -70,7 +70,7 @@ type(iter_type)  :: iter
 integer  :: auto_N2, i1
 real(RP) :: H_target, H_start, dH
 
-character(len=StringLength) :: outputFile ! Only for debug
+! character(len=StringLength) :: outputFile ! Only for debug
 
 auto_N2 = 1;
 option%N2 = max(option%N1+5, 2*option%N1)
@@ -110,17 +110,17 @@ do i1=1,(Option%n_H + 1)
         WRITE(*,*) "it", i1, " Solved height", RF%H, " target is",  H_target
         print*, 'corresponding H/lambda=', RF%H*RF%k/(2.0_rp*pi)
       endif
-      call RF_calc_a(RF, option)
+      call RF_calc_a(option)
       call RF_decide(RF, option, iter)
 
       !if (option%printonscreen==1) then
-	!	call buildOutputFile(option, "DetailedResults.txt",outputFile)
-    !    call WriteRF(RF,outputFile)
-     ! endif
+      !    call buildOutputFile("DetailedResults.txt",outputFile)
+      !    call WriteRF(RF,outputFile)
+      ! endif
 
       ! recompute useful quantities on refined modes
       ! necessary for correct size of dynamic tables (eta and slope)
-      call RF_calc_eta(RF, option)
+      call RF_calc_eta(option)
       call RF_calc_slope(RF, option)
 
    end do
@@ -195,18 +195,18 @@ else
     sigma = tanh(RF%k * RF%hdepth)
 end if
 
-a_g(2) = H / 2
-a_g(3) = RF%k * a_g(2)**2 * (3 - sigma**2) / (4 * sigma**3)
+a_g(2) = H / 2.0_RP
+a_g(3) = RF%k * a_g(2)**2 * (3.0_RP - sigma**2) / (4.0_RP * sigma**3)
 !
 ! build potential modes
 b_g(1) = - RF%c
 b_g(2) = RF%g * a_g(2) / (RF%k * RF%c)
-b_g(3) = 3/4 * RF%k * a_g(2)**2 * (1 - sigma**4) / sigma**3
-RF%Q = 0;
-RF%R = RF%c**2/2;
+b_g(3) = 3.0_RP/4.0_RP * RF%k * a_g(2)**2 * (1.0_RP - sigma**4) / sigma**3
+RF%Q = 0.0_RP
+RF%R = RF%c**2/2.0_RP
 !
 ! storing initial solution
-call RF_calc_eta(RF, option)
+call RF_calc_eta(option)
 
 end subroutine RF_initial_solution
 !-----------------------------------------------------------------------
@@ -324,7 +324,7 @@ type(iter_type), intent(inout)   :: iter
 !
 type(Modal_type) :: modal
 !
-character(len=StringLength) :: outputFile
+! character(len=StringLength) :: outputFile
 ! initialisation
 iter%N_iter = 0
 iter%F_max  = 1
@@ -336,7 +336,7 @@ do while (iter%F_max > option%eps_err .and. iter%DY_max > option%eps_inc .and. i
     call RF_solve(RF, option, iter, modal)
     !
     ! wave elevation, Fourier components
-    call RF_calc_a(RF, option)
+    call RF_calc_a(option)
     !
     ! wave slope
     call RF_calc_slope(RF, option)
